@@ -13,7 +13,7 @@ async function run() {
     core.debug(`tagging #${sha} with tag ${tag}`);
     await client.git.createRef({
       owner: github.context.repo.owner,
-      repo: ${repo},
+      repo: `${repo}`,
       ref: `refs/tags/${tag}`,
       sha: sha
     });
