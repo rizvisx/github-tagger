@@ -5,6 +5,7 @@ async function run() {
   try {
     const token = core.getInput('repo-token', {required: true});
     const tag = core.getInput('tag', {required: true});
+    const repo = core.getInput('repo', {required: true});
     const sha = core.getInput('commit-sha', {required: false}) || github.context.sha;
 
     const client = new github.GitHub(token);
@@ -12,7 +13,7 @@ async function run() {
     core.debug(`tagging #${sha} with tag ${tag}`);
     await client.git.createRef({
       owner: github.context.repo.owner,
-      repo: github.context.repo.repo,
+      repo: ${repo},
       ref: `refs/tags/${tag}`,
       sha: sha
     });
